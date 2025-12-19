@@ -39,8 +39,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          organization: venkatapavan99
-          projectKey: venkatapavan99_Jenkins_Demo
+          organization:venkatapavan99
+          projectKey:venkatapavan99_Jenkins_Demo
 
       # 6️⃣ Upload artifact to GitHub (acts like Artifactory)
       - name: Upload build artifact
