@@ -1,9 +1,9 @@
 name: CI on Push/Pull
 
 on:
- pull_request:      // Added comment to trigger PRagain
-   branches: 
-    - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
  build:
