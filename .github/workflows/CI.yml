@@ -1,0 +1,27 @@
+name: CI on Push/Pull
+
+on:
+ pull_request:
+   branches: 
+    - main
+
+jobs:
+ build:
+  runs-on: ubuntu-latest
+
+  steps:
+  - name: checkout SCM
+    uses: actions/checkout@v3
+
+  - name: setup JDK
+    uses: actions/setup-java@v4
+    with:
+      distribution: 'temurin'
+      java-version: '17'
+      
+
+  - name: Build with the Maven
+    run : mvn clean compile
+
+  - name: Test with Maven
+    run: mvn test
