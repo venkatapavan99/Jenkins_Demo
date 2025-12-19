@@ -1,10 +1,14 @@
 name: CI on Push/Pull
 
 on:
-  pull_request:
-    branches:
-      - main
-
+ pull_request:      
+   branches: 
+    - main
+    
+permissions:
+ contents: read
+ packages: write
+ 
 jobs:
  build:
   runs-on: ubuntu-latest
@@ -25,3 +29,14 @@ jobs:
 
   - name: Test with Maven
     run: mvn test
+
+  - name: Build and Sonar Scan
+     env:
+       SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+     run: mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -Dsonar.projectKey=venkatapavan99_Jenkins_Demo -Dsonar.organization=venkatapavan99 -Dsonar.host.url=https://sonarcloud.io
+   
+   - name: Upload to artifacts
+     uses: actions/upload-artifact@v4
+     with:
+      name: Artiact demo-to Github
+      path: target/*.jar
